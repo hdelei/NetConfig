@@ -7,6 +7,7 @@ package mudarede;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.scene.shape.DrawMode;
 
 /**
  *
@@ -16,6 +17,8 @@ public class IPAddress {
     
     private String addressIP = "";
     private String gateway = "";    
+    private String dns = "";
+    private String mask = "";
     
     public String getAdressIP(String line){
         if (line.contains("IPv4")) {
@@ -31,6 +34,20 @@ public class IPAddress {
         return gateway;
     }
     
+    public String getDNS(String line){        
+        if (line.contains("Servidores DNS")) {
+            filter(line, "Servidores DNS");            
+        }
+        return dns;
+    }
+    
+    public String getMask(String line){
+        if (line.contains("Máscara de Sub-rede")) {
+            filter(line, "Máscara");
+        }
+        return mask;
+    }
+    
     private void filter(String line, String field){
         String IPADDRESS_PATTERN = "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
 
@@ -43,11 +60,19 @@ public class IPAddress {
                     break;
                 case "Gateway":
                     gateway = matcher.group();                      
-                    break;                
+                    break;
+                case "Servidores DNS":
+                    dns = matcher.group();
+                    break;
+                case "Máscara":
+                    mask = matcher.group();
+                    break;
             }
            
         } else{
-            addressIP = "não funciona";
+            addressIP = "IP não obtido!";
+            gateway = "Gateway não obtido!";
+            dns = "DNS não obtido";
         }
     }
 }

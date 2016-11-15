@@ -5,16 +5,12 @@
  */
 package mudarede;
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.Enumeration;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -48,23 +44,34 @@ public class Tela extends javax.swing.JFrame {
         lblDHCP = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtIPAtual = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbIPAtual = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Net Config");
+        setBackground(new java.awt.Color(102, 0, 102));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
 
+        btMudar.setBackground(Color.decode("#4C0B5F"));
+        btMudar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btMudar.setForeground(new java.awt.Color(255, 255, 255));
         btMudar.setText("Mudar");
+        btMudar.setBorder(null);
+        btMudar.setBorderPainted(false);
+        btMudar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btMudar.setPreferredSize(new java.awt.Dimension(40, 15));
         btMudar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btMudarActionPerformed(evt);
             }
         });
 
+        cbTipo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estático 1", "Estático 2", "DHCP" }));
         cbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,21 +79,27 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(153, 0, 0));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         lblIP.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblIP.setForeground(new java.awt.Color(255, 255, 255));
         lblIP.setText("jLabel1");
 
         lblMascara.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblMascara.setForeground(new java.awt.Color(255, 255, 255));
         lblMascara.setText("jLabel1");
 
         lblGateway.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblGateway.setForeground(new java.awt.Color(255, 255, 255));
         lblGateway.setText("jLabel1");
 
         lblDNS.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblDNS.setForeground(new java.awt.Color(255, 255, 255));
         lblDNS.setText("jLabel1");
 
         lblDHCP.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblDHCP.setForeground(new java.awt.Color(255, 255, 255));
         lblDHCP.setText("DHCP: off");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -100,8 +113,8 @@ public class Tela extends javax.swing.JFrame {
                     .addComponent(lblMascara)
                     .addComponent(lblGateway)
                     .addComponent(lblDNS)
-                    .addComponent(lblDHCP))
-                .addContainerGap(116, Short.MAX_VALUE))
+                    .addComponent(lblDHCP, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,18 +133,48 @@ public class Tela extends javax.swing.JFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Escolha suas configurações de rede");
 
-        jButton1.setText("jButton1");
+        jButton1.setBackground(Color.decode("#4C0B5F")
+        );
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Atualizar configurações locais");
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        txtIPAtual.setColumns(20);
-        txtIPAtual.setRows(5);
-        jScrollPane1.setViewportView(txtIPAtual);
+        tbIPAtual.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tbIPAtual.setForeground(new java.awt.Color(153, 0, 153));
+        tbIPAtual.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Endereço IP", null},
+                {"Máscara de sub-rede", null},
+                {"Gateway", null},
+                {"Servidor DNS", null}
+            },
+            new String [] {
+                "Configurações locais", ""
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbIPAtual.setGridColor(new java.awt.Color(0, 204, 102));
+        tbIPAtual.setIntercellSpacing(new java.awt.Dimension(2, 2));
+        tbIPAtual.setName(""); // NOI18N
+        jScrollPane2.setViewportView(tbIPAtual);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,41 +183,38 @@ public class Tela extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btMudar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(96, 96, 96))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(96, 385, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btMudar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btMudar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jButton1)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btMudar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbTipo))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -193,44 +233,14 @@ public class Tela extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         atualizaPainel();
+        obtainAddresses();    
+        this.getContentPane().setBackground(Color.decode("#4C0B5F"));
+        //JTableHeader header = tbIPAtual.getTableHeader();
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        txtIPAtual.setText("");
-        IPAddress ip = new IPAddress();
-        String address = "";
-        String gateway = "";
-        try {
-            Process process = Runtime.getRuntime().exec("ipconfig");
-            process.waitFor();
-
-        BufferedReader reader = 
-        new BufferedReader(new InputStreamReader(process.getInputStream()));
-            
-            String line = "";           
-            while ((line = reader.readLine())!= null) {                
-                address = ip.getAdressIP(line);
-                gateway = ip.getGateway(line);
-                System.out.println(line);
-                
-            }
-            txtIPAtual.append("IP: " + address + "\r\n");
-            txtIPAtual.append("Gateway: " + gateway + "\r\n");
-            //txtIPAtual.append(gateway);
-            //txtIPAtual.append(gateway);
-            //System.out.println(address);
-        } catch (Exception e) {
-        }
-        
-
-//        try {
-//            // TODO add your handling code here:
-//            Network network = new Network();
-//        } catch (SocketException ex) {
-//            Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        
-        
+        obtainAddresses();        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -274,13 +284,13 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblDHCP;
     private javax.swing.JLabel lblDNS;
     private javax.swing.JLabel lblGateway;
     private javax.swing.JLabel lblIP;
     private javax.swing.JLabel lblMascara;
-    private javax.swing.JTextArea txtIPAtual;
+    private javax.swing.JTable tbIPAtual;
     // End of variables declaration//GEN-END:variables
 
     private void atualizaPainel() {
@@ -290,14 +300,14 @@ public class Tela extends javax.swing.JFrame {
                 lblMascara.setText("255.255.255.0");
                 lblGateway.setText("192.168.1.1");
                 lblDNS.setText("192.168.1.1");
-                lblDHCP.setText("DHCP: off");                
+                lblDHCP.setText("IP estático");                
                 break;
                 case 1 :
                 lblIP.setText("192.168.1.220");
                 lblMascara.setText("255.255.255.0");
                 lblGateway.setText("192.168.1.2");
                 lblDNS.setText("192.168.1.2");
-                lblDHCP.setText("DHCP: off");                
+                lblDHCP.setText("IP estático");                
                 break;
                 case 2 :
                 lblIP.setText("xxx.xxx.xxx.xxx");
@@ -343,6 +353,44 @@ public class Tela extends javax.swing.JFrame {
                 }                
                 break;
             
+        }
+    }
+
+    private void obtainAddresses() {
+        
+        IPAddress ip = new IPAddress();
+        String address = "";
+        String gateway = "";
+        String dns = "";
+        String mask = "";
+        
+        try {
+            Process process = Runtime.getRuntime().exec("ipconfig /all");
+            process.waitFor();
+
+        BufferedReader reader = 
+        new BufferedReader(new InputStreamReader(process.getInputStream(), "CP850"));
+            
+            String line = "";           
+            while ((line = reader.readLine())!= null) {                
+                address = ip.getAdressIP(line);
+                gateway = ip.getGateway(line);
+                dns = ip.getDNS(line);
+                mask = ip.getMask(line);
+                
+                
+                //MOSTRA AS INFORMAÇOES DO COMANDO MSDOS
+                //System.out.println(line);
+                
+            }
+//            
+            tbIPAtual.setValueAt(address, 0, 1);
+            tbIPAtual.setValueAt(mask, 1, 1);
+            tbIPAtual.setValueAt(gateway, 2, 1);
+            tbIPAtual.setValueAt(dns, 3, 1);
+            
+        } 
+        catch (Exception e) {
         }
     }
 }
