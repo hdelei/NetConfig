@@ -59,7 +59,7 @@ public class Tela extends javax.swing.JFrame {
 
         btMudar.setBackground(Color.decode("#4C0B5F"));
         btMudar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btMudar.setForeground(new java.awt.Color(255, 255, 255));
+        btMudar.setForeground(new java.awt.Color(204, 204, 204));
         btMudar.setText("Mudar");
         btMudar.setBorder(null);
         btMudar.setBorderPainted(false);
@@ -139,11 +139,16 @@ public class Tela extends javax.swing.JFrame {
         jButton1.setBackground(Color.decode("#4C0B5F")
         );
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(204, 204, 204));
         jButton1.setText("Atualizar configurações locais");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jButton1MouseMoved(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -242,6 +247,10 @@ public class Tela extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         obtainAddresses();        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseMoved
+        // TODO add your handling code here:        
+    }//GEN-LAST:event_jButton1MouseMoved
 
     /**
      * @param args the command line arguments
