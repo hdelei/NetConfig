@@ -8,8 +8,10 @@ package mudarede;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.JTableHeader;
 
 /**
@@ -18,11 +20,13 @@ import javax.swing.table.JTableHeader;
  */
 public class Tela extends javax.swing.JFrame {
 
+    ArrayList<String> netshToList; 
     /**
      * Creates new form Tela
      */
     public Tela() {
         initComponents();
+        netshToList = new ArrayList<String>();
     }
 
     /**
@@ -381,23 +385,23 @@ public class Tela extends javax.swing.JFrame {
         new BufferedReader(new InputStreamReader(process.getInputStream(), "CP850"));
             
             String line = "";           
-            while ((line = reader.readLine())!= null) {                
+            
+            while ((line = reader.readLine())!= null) {                    
                 address = ip.getAdressIP(line);
                 gateway = ip.getGateway(line);
                 dns = ip.getDNS(line);
-                mask = ip.getMask(line);
-                
+                mask = ip.getMask(line);                
                 
                 //MOSTRA AS INFORMAÇOES DO COMANDO MSDOS
-                //System.out.println(line);
-                
-            }
-//            
+                System.out.println(line);
+                netshToList.add(line);     
+                //TODO: trabalhar com arraylist
+            }            
+            
             tbIPAtual.setValueAt(address, 0, 1);
             tbIPAtual.setValueAt(mask, 1, 1);
             tbIPAtual.setValueAt(gateway, 2, 1);
-            tbIPAtual.setValueAt(dns, 3, 1);
-            
+            tbIPAtual.setValueAt(dns, 3, 1);            
         } 
         catch (Exception e) {
         }

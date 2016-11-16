@@ -8,6 +8,7 @@ package mudarede;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.scene.shape.DrawMode;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,11 +19,11 @@ public class IPAddress {
     private String addressIP = "";
     private String gateway = "";    
     private String dns = "";
-    private String mask = "";
+    private String mask = "";    
     
     public String getAdressIP(String line){
         if (line.contains("IPv4")) {
-            filter(line, "IPv4");
+            filter(line, "IPv4");            
         }        
         return addressIP;        
     }
@@ -55,8 +56,8 @@ public class IPAddress {
         Matcher matcher = pattern.matcher(line);
         if (matcher.find()) {
             switch(field){
-                case "IPv4":
-                    addressIP = matcher.group();                      
+                case "IPv4":                    
+                    addressIP = matcher.group();                       
                     break;
                 case "Gateway":
                     gateway = matcher.group();                      
@@ -69,10 +70,6 @@ public class IPAddress {
                     break;
             }
            
-        } else{
-            addressIP = "IP não obtido!";
-            gateway = "Gateway não obtido!";
-            dns = "DNS não obtido";
         }
     }
 }
