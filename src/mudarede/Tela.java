@@ -27,6 +27,7 @@ public class Tela extends javax.swing.JFrame {
     public Tela() {
         initComponents();
         netshToList = new ArrayList<String>();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -50,10 +51,13 @@ public class Tela extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbIPAtual = new javax.swing.JTable();
+        lblClose = new javax.swing.JLabel();
+        lblMinimize = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Net Config");
         setBackground(new java.awt.Color(102, 0, 102));
+        setUndecorated(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -185,6 +189,36 @@ public class Tela extends javax.swing.JFrame {
         tbIPAtual.setName(""); // NOI18N
         jScrollPane2.setViewportView(tbIPAtual);
 
+        lblClose.setFont(new java.awt.Font("Estrangelo Edessa", 1, 18)); // NOI18N
+        lblClose.setForeground(java.awt.Color.gray);
+        lblClose.setText("X");
+        lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCloseMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblCloseMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCloseMouseExited(evt);
+            }
+        });
+
+        lblMinimize.setFont(new java.awt.Font("Estrangelo Edessa", 1, 18)); // NOI18N
+        lblMinimize.setForeground(java.awt.Color.gray);
+        lblMinimize.setText("_");
+        lblMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMinimizeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblMinimizeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblMinimizeMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -207,11 +241,21 @@ public class Tela extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblMinimize)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblClose)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblClose)
+                    .addComponent(lblMinimize))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,7 +267,7 @@ public class Tela extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
@@ -255,6 +299,36 @@ public class Tela extends javax.swing.JFrame {
     private void jButton1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseMoved
         // TODO add your handling code here:        
     }//GEN-LAST:event_jButton1MouseMoved
+
+    private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_lblCloseMouseClicked
+
+    private void lblMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseClicked
+        // TODO add your handling code here:
+        this.setState(Tela.ICONIFIED);
+    }//GEN-LAST:event_lblMinimizeMouseClicked
+
+    private void lblCloseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseEntered
+        // TODO add your handling code here:
+        lblClose.setForeground(Color.white);
+    }//GEN-LAST:event_lblCloseMouseEntered
+
+    private void lblCloseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseExited
+        // TODO add your handling code here:
+        lblClose.setForeground(Color.gray);
+    }//GEN-LAST:event_lblCloseMouseExited
+
+    private void lblMinimizeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseEntered
+        // TODO add your handling code here:
+        lblMinimize.setForeground(Color.white);
+    }//GEN-LAST:event_lblMinimizeMouseEntered
+
+    private void lblMinimizeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseExited
+        // TODO add your handling code here:
+        lblMinimize.setForeground(Color.gray);
+    }//GEN-LAST:event_lblMinimizeMouseExited
 
     /**
      * @param args the command line arguments
@@ -298,11 +372,13 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblDHCP;
     private javax.swing.JLabel lblDNS;
     private javax.swing.JLabel lblGateway;
     private javax.swing.JLabel lblIP;
     private javax.swing.JLabel lblMascara;
+    private javax.swing.JLabel lblMinimize;
     private javax.swing.JTable tbIPAtual;
     // End of variables declaration//GEN-END:variables
 
