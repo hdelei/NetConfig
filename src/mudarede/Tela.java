@@ -23,14 +23,19 @@ import javax.swing.table.JTableHeader;
 public class Tela extends javax.swing.JFrame {
 
     ArrayList<String> netshToList; 
-    int posX=0,posY=0;    
+    ArrayList<Integer> netshIndex;
+    
+    int posX=0,posY=0;//for dragg window
+    
     ButtonFX fx;
     /**
      * Creates new form Tela
      */
     public Tela() {
         initComponents();
-        netshToList = new ArrayList<String>();
+        
+        netshToList = new ArrayList<>();
+        netshIndex = new ArrayList<>();
         this.setLocationRelativeTo(null);
         fx = new ButtonFX();
         
@@ -290,9 +295,12 @@ public class Tela extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(22, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -478,6 +486,7 @@ public class Tela extends javax.swing.JFrame {
     }
 
     private void obtainAddresses() {
+        netshToList.clear();
         
         IPAddress ip = new IPAddress();
         String address = "";
