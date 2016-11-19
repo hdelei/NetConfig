@@ -359,9 +359,7 @@ public class Tela extends javax.swing.JFrame {
 
     private void lblObterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblObterMouseClicked
         // TODO add your handling code here:
-        obtainAddresses();
-        System.out.println("Clicado");
-        
+        obtainAddresses();         
     }//GEN-LAST:event_lblObterMouseClicked
 
     /**
