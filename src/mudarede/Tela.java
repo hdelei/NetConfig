@@ -6,6 +6,8 @@
 package mudarede;
 
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -21,6 +23,8 @@ import javax.swing.table.JTableHeader;
 public class Tela extends javax.swing.JFrame {
 
     ArrayList<String> netshToList; 
+    int posX=0,posY=0;    
+    ButtonFX fx;
     /**
      * Creates new form Tela
      */
@@ -28,6 +32,21 @@ public class Tela extends javax.swing.JFrame {
         initComponents();
         netshToList = new ArrayList<String>();
         this.setLocationRelativeTo(null);
+        fx = new ButtonFX();
+        
+        this.addMouseListener(new MouseAdapter(){
+            public void mousePressed(MouseEvent e){
+                posX=e.getX();
+                posY=e.getY();
+            }
+        });
+        
+        this.addMouseMotionListener(new MouseAdapter(){
+            public void mouseDragged(MouseEvent evt){
+		//sets frame position when mouse dragged			
+		setLocation (evt.getXOnScreen()-posX,evt.getYOnScreen()-posY);					
+            }
+        });        
     }
 
     /**
@@ -48,11 +67,11 @@ public class Tela extends javax.swing.JFrame {
         lblDNS = new javax.swing.JLabel();
         lblDHCP = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbIPAtual = new javax.swing.JTable();
         lblClose = new javax.swing.JLabel();
         lblMinimize = new javax.swing.JLabel();
+        lblObter = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Net Config");
@@ -68,7 +87,7 @@ public class Tela extends javax.swing.JFrame {
         btMudar.setBackground(Color.decode("#4C0B5F"));
         btMudar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btMudar.setForeground(new java.awt.Color(204, 204, 204));
-        btMudar.setText("Mudar");
+        btMudar.setText("Confirma");
         btMudar.setBorder(null);
         btMudar.setBorderPainted(false);
         btMudar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -81,33 +100,34 @@ public class Tela extends javax.swing.JFrame {
 
         cbTipo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estático 1", "Estático 2", "DHCP" }));
+        cbTipo.setBorder(null);
         cbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTipoActionPerformed(evt);
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(153, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(83, 66, 246));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         lblIP.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblIP.setForeground(new java.awt.Color(255, 255, 255));
+        lblIP.setForeground(new java.awt.Color(215, 217, 241));
         lblIP.setText("jLabel1");
 
         lblMascara.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblMascara.setForeground(new java.awt.Color(255, 255, 255));
+        lblMascara.setForeground(new java.awt.Color(215, 217, 241));
         lblMascara.setText("jLabel1");
 
         lblGateway.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblGateway.setForeground(new java.awt.Color(255, 255, 255));
+        lblGateway.setForeground(new java.awt.Color(215, 217, 241));
         lblGateway.setText("jLabel1");
 
         lblDNS.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblDNS.setForeground(new java.awt.Color(255, 255, 255));
+        lblDNS.setForeground(new java.awt.Color(215, 217, 241));
         lblDNS.setText("jLabel1");
 
         lblDHCP.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lblDHCP.setForeground(new java.awt.Color(255, 255, 255));
+        lblDHCP.setForeground(new java.awt.Color(215, 217, 241));
         lblDHCP.setText("DHCP: off");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -143,25 +163,6 @@ public class Tela extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Escolha suas configurações de rede");
-
-        jButton1.setBackground(Color.decode("#4C0B5F")
-        );
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(204, 204, 204));
-        jButton1.setText("Atualizar configurações locais");
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jButton1MouseMoved(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         tbIPAtual.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tbIPAtual.setForeground(new java.awt.Color(153, 0, 153));
@@ -219,6 +220,24 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
+        lblObter.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        lblObter.setForeground(new java.awt.Color(204, 153, 255));
+        lblObter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblObter.setText("Obter configuração de rede local");
+        lblObter.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        lblObter.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblObter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblObterMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblObterMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblObterMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -226,48 +245,54 @@ public class Tela extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(96, 385, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btMudar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addComponent(lblObter))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(20, 31, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblMinimize)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblClose)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblClose)
-                    .addComponent(lblMinimize))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btMudar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cbTipo))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblClose)
+                            .addComponent(lblMinimize))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblObter))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbTipo)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btMudar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(11, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -291,14 +316,6 @@ public class Tela extends javax.swing.JFrame {
         //JTableHeader header = tbIPAtual.getTableHeader();
         
     }//GEN-LAST:event_formWindowOpened
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        obtainAddresses();        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseMoved
-        // TODO add your handling code here:        
-    }//GEN-LAST:event_jButton1MouseMoved
 
     private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
         // TODO add your handling code here:
@@ -329,6 +346,23 @@ public class Tela extends javax.swing.JFrame {
         // TODO add your handling code here:
         lblMinimize.setForeground(Color.gray);
     }//GEN-LAST:event_lblMinimizeMouseExited
+
+    private void lblObterMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblObterMouseEntered
+        // TODO add your handling code here:
+        fx.setEnterColor(lblObter);
+    }//GEN-LAST:event_lblObterMouseEntered
+
+    private void lblObterMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblObterMouseExited
+        // TODO add your handling code here:
+        fx.setExitColor(lblObter);
+    }//GEN-LAST:event_lblObterMouseExited
+
+    private void lblObterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblObterMouseClicked
+        // TODO add your handling code here:
+        obtainAddresses();
+        System.out.println("Clicado");
+        
+    }//GEN-LAST:event_lblObterMouseClicked
 
     /**
      * @param args the command line arguments
@@ -368,7 +402,6 @@ public class Tela extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btMudar;
     private javax.swing.JComboBox<String> cbTipo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -379,6 +412,7 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JLabel lblIP;
     private javax.swing.JLabel lblMascara;
     private javax.swing.JLabel lblMinimize;
+    private javax.swing.JLabel lblObter;
     private javax.swing.JTable tbIPAtual;
     // End of variables declaration//GEN-END:variables
 
