@@ -6,15 +6,21 @@
 package mudarede;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import jdk.nashorn.internal.ir.BreakNode;
 
 /**
  *
@@ -24,8 +30,9 @@ public class Tela extends javax.swing.JFrame {
 
     ArrayList<String> netshToList; 
     ArrayList<Integer> netshIndex;
+    private String adapterName;
     
-    int posX=0,posY=0;//for dragg window
+    int posX=0,posY=0;//for dragg form
     
     ButtonFX fx;
     /**
@@ -77,6 +84,28 @@ public class Tela extends javax.swing.JFrame {
         lblClose = new javax.swing.JLabel();
         lblMinimize = new javax.swing.JLabel();
         lblObter = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        txtIP1 = new javax.swing.JFormattedTextField();
+        txtIP2 = new javax.swing.JFormattedTextField();
+        txtIP4 = new javax.swing.JFormattedTextField();
+        txtIP3 = new javax.swing.JFormattedTextField();
+        txtIP5 = new javax.swing.JFormattedTextField();
+        txtIP6 = new javax.swing.JFormattedTextField();
+        txtIP7 = new javax.swing.JFormattedTextField();
+        txtIP8 = new javax.swing.JFormattedTextField();
+        txtIP9 = new javax.swing.JFormattedTextField();
+        txtIP10 = new javax.swing.JFormattedTextField();
+        txtIP11 = new javax.swing.JFormattedTextField();
+        txtIP12 = new javax.swing.JFormattedTextField();
+        txtIP13 = new javax.swing.JFormattedTextField();
+        txtIP14 = new javax.swing.JFormattedTextField();
+        txtIP15 = new javax.swing.JFormattedTextField();
+        txtIP16 = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Net Config");
@@ -147,7 +176,7 @@ public class Tela extends javax.swing.JFrame {
                     .addComponent(lblGateway)
                     .addComponent(lblDNS)
                     .addComponent(lblDHCP, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +191,7 @@ public class Tela extends javax.swing.JFrame {
                 .addComponent(lblDNS)
                 .addGap(18, 18, 18)
                 .addComponent(lblDHCP)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -198,6 +227,7 @@ public class Tela extends javax.swing.JFrame {
         lblClose.setFont(new java.awt.Font("Estrangelo Edessa", 1, 18)); // NOI18N
         lblClose.setForeground(java.awt.Color.gray);
         lblClose.setText("X");
+        lblClose.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
         lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCloseMouseClicked(evt);
@@ -213,6 +243,7 @@ public class Tela extends javax.swing.JFrame {
         lblMinimize.setFont(new java.awt.Font("Estrangelo Edessa", 1, 18)); // NOI18N
         lblMinimize.setForeground(java.awt.Color.gray);
         lblMinimize.setText("_");
+        lblMinimize.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
         lblMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblMinimizeMouseClicked(evt);
@@ -243,64 +274,368 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        txtIP1.setColumns(3);
+        try {
+            txtIP1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP1KeyReleased(evt);
+            }
+        });
+
+        txtIP2.setColumns(3);
+        try {
+            txtIP2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP2KeyReleased(evt);
+            }
+        });
+
+        txtIP4.setColumns(3);
+        try {
+            txtIP4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP4KeyReleased(evt);
+            }
+        });
+
+        txtIP3.setColumns(3);
+        try {
+            txtIP3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP3KeyReleased(evt);
+            }
+        });
+
+        txtIP5.setColumns(3);
+        try {
+            txtIP5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP5KeyReleased(evt);
+            }
+        });
+
+        txtIP6.setColumns(3);
+        try {
+            txtIP6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP6KeyReleased(evt);
+            }
+        });
+
+        txtIP7.setColumns(3);
+        try {
+            txtIP7.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP7KeyReleased(evt);
+            }
+        });
+
+        txtIP8.setColumns(3);
+        try {
+            txtIP8.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP8KeyReleased(evt);
+            }
+        });
+
+        txtIP9.setColumns(3);
+        try {
+            txtIP9.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP9KeyReleased(evt);
+            }
+        });
+
+        txtIP10.setColumns(3);
+        try {
+            txtIP10.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP10KeyReleased(evt);
+            }
+        });
+
+        txtIP11.setColumns(3);
+        try {
+            txtIP11.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP11KeyReleased(evt);
+            }
+        });
+
+        txtIP12.setColumns(3);
+        try {
+            txtIP12.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP12KeyReleased(evt);
+            }
+        });
+
+        txtIP13.setColumns(3);
+        try {
+            txtIP13.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP13KeyReleased(evt);
+            }
+        });
+
+        txtIP14.setColumns(3);
+        try {
+            txtIP14.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP14.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP14KeyReleased(evt);
+            }
+        });
+
+        txtIP15.setColumns(3);
+        try {
+            txtIP15.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP15.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP15KeyReleased(evt);
+            }
+        });
+
+        txtIP16.setColumns(3);
+        try {
+            txtIP16.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIP16.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIP16KeyReleased(evt);
+            }
+        });
+
+        jLabel1.setText("Endereço IP:");
+
+        jLabel3.setText("Máscara:");
+
+        jLabel4.setText("Gateway");
+
+        jLabel5.setText("Servidor DNS:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(txtIP1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIP2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIP3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIP4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtIP5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIP6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIP7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIP8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtIP9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIP10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIP11, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIP12, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtIP13, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIP14, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIP15, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIP16, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIP3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIP4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIP5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIP6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIP7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIP8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIP9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIP10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIP11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIP12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIP13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIP14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIP15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIP16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblMinimize)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblClose)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(89, 89, 89))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btMudar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(68, 68, 68)
-                                .addComponent(lblObter))
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btMudar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(34, 34, 34))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(20, 31, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblMinimize)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblClose)
-                .addContainerGap())
+                                .addGap(50, 50, 50)
+                                .addComponent(lblObter)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblClose)
-                            .addComponent(lblMinimize))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblObter))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbTipo)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btMudar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(18, 18, 18)
+                            .addComponent(lblMinimize))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(22, Short.MAX_VALUE))
+                        .addComponent(lblObter)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btMudar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(35, 35, 35))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
         );
 
         pack();
@@ -370,6 +705,100 @@ public class Tela extends javax.swing.JFrame {
         obtainAddresses();         
     }//GEN-LAST:event_lblObterMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String[] ips = {"192.168.1.30", "255.255.255.0",
+            "192.168.1.1", "192.168.1.254"};
+        Netsh netsh = new Netsh(adapterName);
+        netsh.setDHCP();
+        JOptionPane.showMessageDialog(null, netsh.getNetshIP());
+        JOptionPane.showMessageDialog(null, netsh.getNetshDNS());
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtIP1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP1KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP1);
+        
+        
+    }//GEN-LAST:event_txtIP1KeyReleased
+
+    private void txtIP2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP2KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP2);
+    }//GEN-LAST:event_txtIP2KeyReleased
+
+    private void txtIP4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP4KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP4);
+    }//GEN-LAST:event_txtIP4KeyReleased
+
+    private void txtIP3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP3KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP3);
+        
+    }//GEN-LAST:event_txtIP3KeyReleased
+
+    private void txtIP5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP5KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP5);
+    }//GEN-LAST:event_txtIP5KeyReleased
+
+    private void txtIP6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP6KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP6);
+    }//GEN-LAST:event_txtIP6KeyReleased
+
+    private void txtIP7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP7KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP7);
+    }//GEN-LAST:event_txtIP7KeyReleased
+
+    private void txtIP8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP8KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP8);
+    }//GEN-LAST:event_txtIP8KeyReleased
+
+    private void txtIP9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP9KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP9);
+    }//GEN-LAST:event_txtIP9KeyReleased
+
+    private void txtIP10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP10KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP10);
+    }//GEN-LAST:event_txtIP10KeyReleased
+
+    private void txtIP11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP11KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP11);
+    }//GEN-LAST:event_txtIP11KeyReleased
+
+    private void txtIP12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP12KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP12);
+    }//GEN-LAST:event_txtIP12KeyReleased
+
+    private void txtIP13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP13KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP13);
+    }//GEN-LAST:event_txtIP13KeyReleased
+
+    private void txtIP14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP14KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP14);
+    }//GEN-LAST:event_txtIP14KeyReleased
+
+    private void txtIP15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP15KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP15);
+    }//GEN-LAST:event_txtIP15KeyReleased
+
+    private void txtIP16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP16KeyReleased
+        // TODO add your handling code here:
+        changeFocus(txtIP16);
+    }//GEN-LAST:event_txtIP16KeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -408,8 +837,14 @@ public class Tela extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btMudar;
     private javax.swing.JComboBox<String> cbTipo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblDHCP;
@@ -420,6 +855,22 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JLabel lblMinimize;
     private javax.swing.JLabel lblObter;
     private javax.swing.JTable tbIPAtual;
+    private javax.swing.JFormattedTextField txtIP1;
+    private javax.swing.JFormattedTextField txtIP10;
+    private javax.swing.JFormattedTextField txtIP11;
+    private javax.swing.JFormattedTextField txtIP12;
+    private javax.swing.JFormattedTextField txtIP13;
+    private javax.swing.JFormattedTextField txtIP14;
+    private javax.swing.JFormattedTextField txtIP15;
+    private javax.swing.JFormattedTextField txtIP16;
+    private javax.swing.JFormattedTextField txtIP2;
+    private javax.swing.JFormattedTextField txtIP3;
+    private javax.swing.JFormattedTextField txtIP4;
+    private javax.swing.JFormattedTextField txtIP5;
+    private javax.swing.JFormattedTextField txtIP6;
+    private javax.swing.JFormattedTextField txtIP7;
+    private javax.swing.JFormattedTextField txtIP8;
+    private javax.swing.JFormattedTextField txtIP9;
     // End of variables declaration//GEN-END:variables
 
     private void atualizaPainel() {
@@ -449,6 +900,8 @@ public class Tela extends javax.swing.JFrame {
         }
     }
     private void executaComando(){
+        
+        
         String gateway1 = "netsh interface ip set address name = \"OffBoard\" static 192.168.1.220 255.255.255.0 192.168.1.1";
         String dns1 = "netsh interface ip set dnsservers name=\"OffBoard\" static 192.168.1.1 primary no";
         String gateway2 = "netsh interface ip set address name = \"OffBoard\" static 192.168.1.220 255.255.255.0 192.168.1.2";
@@ -510,7 +963,7 @@ public class Tela extends javax.swing.JFrame {
                 mask = ip.getMask(line);                
                 
                 //MOSTRA AS INFORMAÇOES DO COMANDO MSDOS
-                System.out.println(line);
+                //System.out.println(line);
                 netshToList.add(line);     
                 //TODO: trabalhar com arraylist
             }            
@@ -518,9 +971,52 @@ public class Tela extends javax.swing.JFrame {
             tbIPAtual.setValueAt(address, 0, 1);
             tbIPAtual.setValueAt(mask, 1, 1);
             tbIPAtual.setValueAt(gateway, 2, 1);
-            tbIPAtual.setValueAt(dns, 3, 1);            
+            tbIPAtual.setValueAt(dns, 3, 1);       
+            setAdapterName();
+            
+            //txtIP.setText(address.replace(".", ""));
         } 
         catch (Exception e) {
         }
+    }
+
+    private void setAdapterName() {
+        //String nomeAdaptador;
+        netshIndex.clear();
+        try {
+            for(int i = 0; i < netshToList.size();i++){
+                if (netshToList.get(i).contains("Adaptador Ethernet")) {
+                    netshIndex.add(i);
+                }else if (netshToList.get(i).contains("Rede sem Fio")) {
+                    netshIndex.add(i);
+                }else if (netshToList.get(i).contains("IPv4")) {                
+                    int index = netshIndex.size() - 1;
+                    index = netshIndex.get(index); 
+                    adapterName = netshToList.get(index);
+                    adapterName = adapterName.replace("Adaptador Ethhernet ", "");
+                    adapterName = adapterName.replace("Adaptador de Rede sem Fio ", "");
+                    
+                    TableColumn column = tbIPAtual.getTableHeader()
+                                    .getColumnModel().getColumn(0);
+                
+                    adapterName = adapterName.replace(":", "");
+                    column.setHeaderValue(adapterName);
+                    tbIPAtual.getTableHeader().repaint();
+                    
+                    
+                }            
+            }                
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+    }
+
+    private void changeFocus(JFormattedTextField txt) {
+        String count = txt.getText().trim();
+        if (count.length() == 3) { 
+           KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+           manager.focusNextComponent();           
+        }        
     }
 }
