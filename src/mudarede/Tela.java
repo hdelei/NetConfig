@@ -5,6 +5,7 @@
  */
 package mudarede;
 
+import Config.Propriedades;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.KeyboardFocusManager;
@@ -12,7 +13,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -70,21 +75,12 @@ public class Tela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         btMudar = new javax.swing.JButton();
         cbTipo = new javax.swing.JComboBox<>();
-        jPanel1 = new javax.swing.JPanel();
-        lblIP = new javax.swing.JLabel();
-        lblMascara = new javax.swing.JLabel();
-        lblGateway = new javax.swing.JLabel();
-        lblDNS = new javax.swing.JLabel();
-        lblDHCP = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbIPAtual = new javax.swing.JTable();
         lblClose = new javax.swing.JLabel();
         lblMinimize = new javax.swing.JLabel();
         lblObter = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         txtIP1 = new javax.swing.JFormattedTextField();
         txtIP2 = new javax.swing.JFormattedTextField();
@@ -106,6 +102,7 @@ public class Tela extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        lblConfigAtual = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Net Config");
@@ -133,96 +130,13 @@ public class Tela extends javax.swing.JFrame {
         });
 
         cbTipo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estático 1", "Estático 2", "DHCP" }));
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Configuração atual", "Personalizado 1", "Personalizado 2", "DHCP" }));
         cbTipo.setBorder(null);
         cbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTipoActionPerformed(evt);
             }
         });
-
-        jPanel1.setBackground(new java.awt.Color(83, 66, 246));
-        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
-
-        lblIP.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblIP.setForeground(new java.awt.Color(215, 217, 241));
-        lblIP.setText("jLabel1");
-
-        lblMascara.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblMascara.setForeground(new java.awt.Color(215, 217, 241));
-        lblMascara.setText("jLabel1");
-
-        lblGateway.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblGateway.setForeground(new java.awt.Color(215, 217, 241));
-        lblGateway.setText("jLabel1");
-
-        lblDNS.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblDNS.setForeground(new java.awt.Color(215, 217, 241));
-        lblDNS.setText("jLabel1");
-
-        lblDHCP.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lblDHCP.setForeground(new java.awt.Color(215, 217, 241));
-        lblDHCP.setText("DHCP: off");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblIP)
-                    .addComponent(lblMascara)
-                    .addComponent(lblGateway)
-                    .addComponent(lblDNS)
-                    .addComponent(lblDHCP, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblIP)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblMascara)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblGateway)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblDNS)
-                .addGap(18, 18, 18)
-                .addComponent(lblDHCP)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Escolha suas configurações de rede");
-
-        tbIPAtual.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        tbIPAtual.setForeground(new java.awt.Color(153, 0, 153));
-        tbIPAtual.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Endereço IP", null},
-                {"Máscara de sub-rede", null},
-                {"Gateway", null},
-                {"Servidor DNS", null}
-            },
-            new String [] {
-                "Configurações locais", ""
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tbIPAtual.setGridColor(new java.awt.Color(0, 204, 102));
-        tbIPAtual.setIntercellSpacing(new java.awt.Dimension(2, 2));
-        tbIPAtual.setName(""); // NOI18N
-        jScrollPane2.setViewportView(tbIPAtual);
 
         lblClose.setFont(new java.awt.Font("Estrangelo Edessa", 1, 18)); // NOI18N
         lblClose.setForeground(java.awt.Color.gray);
@@ -259,7 +173,7 @@ public class Tela extends javax.swing.JFrame {
         lblObter.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         lblObter.setForeground(new java.awt.Color(204, 153, 255));
         lblObter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblObter.setText("Obter configuração de rede local");
+        lblObter.setText("Escolha suas configurações de rede");
         lblObter.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         lblObter.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblObter.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -274,19 +188,13 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         txtIP1.setColumns(3);
         try {
             txtIP1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP1KeyReleased(evt);
@@ -299,6 +207,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP2KeyReleased(evt);
@@ -311,6 +220,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP4KeyReleased(evt);
@@ -323,6 +233,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP3KeyReleased(evt);
@@ -335,6 +246,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP5KeyReleased(evt);
@@ -347,6 +259,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP6.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP6KeyReleased(evt);
@@ -359,6 +272,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP7.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP7KeyReleased(evt);
@@ -371,6 +285,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP8.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP8KeyReleased(evt);
@@ -383,6 +298,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP9.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP9.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP9KeyReleased(evt);
@@ -395,6 +311,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP10.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP10.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP10KeyReleased(evt);
@@ -407,6 +324,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP11.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP11.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP11KeyReleased(evt);
@@ -419,6 +337,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP12.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP12.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP12KeyReleased(evt);
@@ -431,6 +350,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP13.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP13.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP13KeyReleased(evt);
@@ -443,6 +363,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP14.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP14.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP14KeyReleased(evt);
@@ -455,6 +376,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP15.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP15.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP15KeyReleased(evt);
@@ -467,6 +389,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtIP16.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP16.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP16KeyReleased(evt);
@@ -481,6 +404,9 @@ public class Tela extends javax.swing.JFrame {
 
         jLabel5.setText("Servidor DNS:");
 
+        lblConfigAtual.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        lblConfigAtual.setText("Configuração atual");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -488,16 +414,6 @@ public class Tela extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(txtIP1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIP2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIP3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIP4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -527,13 +443,29 @@ public class Tela extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtIP15, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIP16, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtIP16, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(txtIP1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIP2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIP3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIP4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(lblConfigAtual)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
+                .addComponent(lblConfigAtual)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtIP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -568,74 +500,41 @@ public class Tela extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblMinimize)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblClose)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(89, 89, 89))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap(54, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btMudar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(34, 34, 34))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(lblObter)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblObter)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(cbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btMudar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblMinimize)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblClose)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblClose)
-                            .addComponent(lblMinimize))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblMinimize))
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblObter)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btMudar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(35, 35, 35))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btMudar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -649,6 +548,9 @@ public class Tela extends javax.swing.JFrame {
     private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed
         // TODO add your handling code here:
         atualizaPainel();
+        
+        
+        
     }//GEN-LAST:event_cbTipoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -704,17 +606,6 @@ public class Tela extends javax.swing.JFrame {
         // TODO add your handling code here:
         obtainAddresses();         
     }//GEN-LAST:event_lblObterMouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String[] ips = {"192.168.1.30", "255.255.255.0",
-            "192.168.1.1", "192.168.1.254"};
-        Netsh netsh = new Netsh(adapterName);
-        netsh.setDHCP();
-        JOptionPane.showMessageDialog(null, netsh.getNetshIP());
-        JOptionPane.showMessageDialog(null, netsh.getNetshDNS());
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtIP1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP1KeyReleased
         // TODO add your handling code here:
@@ -836,25 +727,17 @@ public class Tela extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btMudar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbTipo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblClose;
-    private javax.swing.JLabel lblDHCP;
-    private javax.swing.JLabel lblDNS;
-    private javax.swing.JLabel lblGateway;
-    private javax.swing.JLabel lblIP;
-    private javax.swing.JLabel lblMascara;
+    private javax.swing.JLabel lblConfigAtual;
     private javax.swing.JLabel lblMinimize;
     private javax.swing.JLabel lblObter;
-    private javax.swing.JTable tbIPAtual;
     private javax.swing.JFormattedTextField txtIP1;
     private javax.swing.JFormattedTextField txtIP10;
     private javax.swing.JFormattedTextField txtIP11;
@@ -874,33 +757,42 @@ public class Tela extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void atualizaPainel() {
+        Propriedades prop = new Propriedades();
+        String address;
+        String mask;
+        String gateway;
+        String dns;
+        
         switch(cbTipo.getSelectedIndex()){
-            case 0 :
-                lblIP.setText("192.168.1.220");
-                lblMascara.setText("255.255.255.0");
-                lblGateway.setText("192.168.1.1");
-                lblDNS.setText("192.168.1.1");
-                lblDHCP.setText("IP estático");                
+            case 0:
+                obtainAddresses();
+                lblConfigAtual.setText("Configuração atual");
                 break;
-                case 1 :
-                lblIP.setText("192.168.1.220");
-                lblMascara.setText("255.255.255.0");
-                lblGateway.setText("192.168.1.2");
-                lblDNS.setText("192.168.1.2");
-                lblDHCP.setText("IP estático");                
+            case 1 :      
+                address = prop.getIp_1();
+                mask = prop.getMask_1();
+                gateway = prop.getGateway_1();
+                dns = prop.getDns_1();
+                
+                fillTextBoxes(address, mask, gateway, dns);
+                lblConfigAtual.setText("Personalizada 1");                
                 break;
                 case 2 :
-                lblIP.setText("xxx.xxx.xxx.xxx");
-                lblMascara.setText("xxx.xxx.xxx.xxx");
-                lblGateway.setText("xxx.xxx.xxx.xxx");
-                lblDNS.setText("xxx.xxx.xxx.xxx");
-                lblDHCP.setText("DHCP: on");                
+                address = prop.getIp_2();
+                mask = prop.getMask_2();
+                gateway = prop.getGateway_2();
+                dns = prop.getDns_2();
+                
+                fillTextBoxes(address, mask, gateway, dns);                
+                lblConfigAtual.setText("Personalizada 2");
+                break;
+                case 3 :              
+                  lblConfigAtual.setText("Configuração automática");
                 break;
             
         }
     }
-    private void executaComando(){
-        
+    private void executaComando(){        
         
         String gateway1 = "netsh interface ip set address name = \"OffBoard\" static 192.168.1.220 255.255.255.0 192.168.1.1";
         String dns1 = "netsh interface ip set dnsservers name=\"OffBoard\" static 192.168.1.1 primary no";
@@ -968,10 +860,13 @@ public class Tela extends javax.swing.JFrame {
                 //TODO: trabalhar com arraylist
             }            
             
-            tbIPAtual.setValueAt(address, 0, 1);
-            tbIPAtual.setValueAt(mask, 1, 1);
-            tbIPAtual.setValueAt(gateway, 2, 1);
-            tbIPAtual.setValueAt(dns, 3, 1);       
+//            tbIPAtual.setValueAt(address, 0, 1);
+//            tbIPAtual.setValueAt(mask, 1, 1);
+//            tbIPAtual.setValueAt(gateway, 2, 1);
+//            tbIPAtual.setValueAt(dns, 3, 1);
+            
+            fillTextBoxes(address, mask, gateway, dns);
+            
             setAdapterName();
             
             //txtIP.setText(address.replace(".", ""));
@@ -996,12 +891,12 @@ public class Tela extends javax.swing.JFrame {
                     adapterName = adapterName.replace("Adaptador Ethhernet ", "");
                     adapterName = adapterName.replace("Adaptador de Rede sem Fio ", "");
                     
-                    TableColumn column = tbIPAtual.getTableHeader()
-                                    .getColumnModel().getColumn(0);
+//                    TableColumn column = tbIPAtual.getTableHeader()
+//                                    .getColumnModel().getColumn(0);
                 
                     adapterName = adapterName.replace(":", "");
-                    column.setHeaderValue(adapterName);
-                    tbIPAtual.getTableHeader().repaint();
+//                    column.setHeaderValue(adapterName);
+//                    tbIPAtual.getTableHeader().repaint();
                     
                     
                 }            
@@ -1018,5 +913,52 @@ public class Tela extends javax.swing.JFrame {
            KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
            manager.focusNextComponent();           
         }        
+    }
+
+    private ArrayList<Integer> convertIP(String address) {
+        InetAddress ip;
+        ArrayList<Integer> octet = new ArrayList<>();        
+        try {
+            ip = InetAddress.getByName(address);
+            
+            byte[] bytes = ip.getAddress();
+                for (byte b : bytes) {
+                //System.out.println(b & 0xFF);
+                octet.add(b & 0xFF);                
+            }
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return octet;
+    }
+
+    private void fillTextBoxes(String address, String mask, 
+                               String gateway, String dns) {
+        ArrayList<Integer> octet = convertIP(address);
+        txtIP1.setText(octet.get(0).toString());
+        txtIP2.setText(octet.get(1).toString());
+        txtIP3.setText(octet.get(2).toString());
+        txtIP4.setText(octet.get(3).toString());
+            
+        octet.clear();
+        octet = convertIP(mask);
+        txtIP5.setText(octet.get(0).toString());
+        txtIP6.setText(octet.get(1).toString());
+        txtIP7.setText(octet.get(2).toString());
+        txtIP8.setText(octet.get(3).toString());
+            
+        octet.clear();
+        octet = convertIP(gateway);
+        txtIP9.setText(octet.get(0).toString());
+        txtIP10.setText(octet.get(1).toString());
+        txtIP11.setText(octet.get(2).toString());
+        txtIP12.setText(octet.get(3).toString());
+            
+        octet.clear();
+        octet = convertIP(dns);
+        txtIP13.setText(octet.get(0).toString());
+        txtIP14.setText(octet.get(1).toString());
+        txtIP15.setText(octet.get(2).toString());
+        txtIP16.setText(octet.get(3).toString());
     }
 }
