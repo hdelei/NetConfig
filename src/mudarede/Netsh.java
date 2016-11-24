@@ -16,6 +16,9 @@ public class Netsh {
     private String ipAddress;
     private String dnsAddress;    
     private String adapterName;
+    private final String T_ADDRESS = "address";
+    private final String T_DNS = "dnsservers";
+    
     
     /**
      *
@@ -35,16 +38,16 @@ public class Netsh {
         String ips_3 = " static " + ips[3] + " primary no";
         
         if (ips.length == 4 ) {
-            cmdIPAdress("address", ips_0 + " " 
+            ipAddress = cmdAdress(T_ADDRESS, ips_0 + " " 
                     + ips[1] + " " + ips[2]);
             
-            cmdDNSAdress("dnsservers", ips_3);            
+            dnsAddress = cmdAdress(T_DNS, ips_3);            
         }        
     }   
     
     public void setDHCP(){        
-        cmdIPAdress("address", "dhcp");
-        cmdDNSAdress("dnsservers", "dhcp");        
+        ipAddress = cmdAdress(T_ADDRESS, "dhcp");
+        dnsAddress = cmdAdress(T_DNS, "dhcp");        
     }
 
     /**
@@ -52,18 +55,15 @@ public class Netsh {
      * @param type Recebe "address" ou "dnsservers"
      * @param adresses Recebe os endereços IP ou "dhcp"
      */
-    private void cmdIPAdress(String type, String adresses){          
-        ipAddress = "netsh interface ip set ";
-        ipAddress += type;        
-        ipAddress += " name = \"" + adapterName + "\" ";      
-        ipAddress += adresses + " ";          
-    }
-    private void cmdDNSAdress(String type, String adresses){          
-        dnsAddress = "netsh interface ip set ";
-        dnsAddress += type;        
-        dnsAddress += " name = \"" + adapterName + "\" ";      
-        dnsAddress += adresses + " "; 
-    }
+    private String cmdAdress(String type, String adresses){  
+        String strReturn;
+        strReturn = "netsh interface ip set ";
+        strReturn += type;        
+        strReturn += " name = \"" + adapterName + "\" ";      
+        strReturn += adresses + " ";          
+        
+        return strReturn;
+    }    
     
     public String getNetshIP(){    
         return ipAddress;

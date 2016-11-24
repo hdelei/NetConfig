@@ -6,7 +6,7 @@
 package mudarede;
 
 import Config.Propriedades;
-import com.sun.xml.internal.ws.util.StringUtils;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.KeyboardFocusManager;
@@ -567,10 +567,7 @@ public class Tela extends javax.swing.JFrame {
     private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed
         // TODO add your handling code here:
         atualizaPainel();
-        changeEditable();
-        
-        
-        
+        changeEditable();        
     }//GEN-LAST:event_cbTipoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -629,9 +626,7 @@ public class Tela extends javax.swing.JFrame {
 
     private void txtIP1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP1KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP1);
-        
-        
+        changeFocus(txtIP1);        
     }//GEN-LAST:event_txtIP1KeyReleased
 
     private void txtIP2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP2KeyReleased
@@ -819,41 +814,48 @@ public class Tela extends javax.swing.JFrame {
             
         }
     }
-    private void executaComando(){        
+    private void executaComando(){
+        String ipAddresses;
+        String dnsAddress;
         
-        String gateway1 = "netsh interface ip set address name = \"OffBoard\" static 192.168.1.220 255.255.255.0 192.168.1.1";
-        String dns1 = "netsh interface ip set dnsservers name=\"OffBoard\" static 192.168.1.1 primary no";
-        String gateway2 = "netsh interface ip set address name = \"OffBoard\" static 192.168.1.220 255.255.255.0 192.168.1.2";
-        String dns2 = "netsh interface ip set dnsservers name=\"OffBoard\" static 192.168.1.2 primary no";
-        String dhcp = "netsh interface ip set address name=\"OffBoard\" dhcp";
-        String dhcpDNS = "netsh interface ip set dnsservers name=\"OffBoard\" dhcp";
+        String[] customIPs = getTextBoxesContent();        
+        
+        Netsh netsh = new Netsh(adapterName);
+        netsh.setStaticAddress(customIPs);
+        ipAddresses = netsh.getNetshIP();
+        dnsAddress = netsh.getNetshDNS();        
                 
         switch(cbTipo.getSelectedIndex()){
-            case 0 :
+            case 1 ://Personalizado 1
                 try {
-                    Runtime.getRuntime().exec(gateway1);
-                    Runtime.getRuntime().exec(dns1);
+                    System.out.println("Comando Netsh: \r\n" + ipAddresses + "\r\n" + dnsAddress);
+                    Runtime.getRuntime().exec(ipAddresses);
+                    Runtime.getRuntime().exec(dnsAddress);
             
                 } catch (Exception e) {            
                 }
                 break;
-                case 1 :
+                case 2 : //Personalizado 2
                 try {
-                    Runtime.getRuntime().exec(gateway2);
-                    Runtime.getRuntime().exec(dns2);
+                    System.out.println("Netsh out: " + ipAddresses + "\r\n" + dnsAddress);
+                    Runtime.getRuntime().exec(ipAddresses);
+                    Runtime.getRuntime().exec(dnsAddress);
             
                 } catch (Exception e) {            
                 }
                 break;
-                case 2 :
-                try {
-                    Runtime.getRuntime().exec(dhcp);
-                    Runtime.getRuntime().exec(dhcpDNS);
+                case 3 : //DHCP
+                    netsh.setDHCP();
+                    ipAddresses = netsh.getNetshIP();
+                    dnsAddress = netsh.getNetshDNS(); 
+                    System.out.println("Netsh out: " + ipAddresses + "\r\n" + dnsAddress);
+                    try {                    
+                        Runtime.getRuntime().exec(ipAddresses);
+                        Runtime.getRuntime().exec(dnsAddress);
             
                 } catch (Exception e) {            
                 }                
-                break;
-            
+                break;            
         }
     }
 
@@ -874,7 +876,7 @@ public class Tela extends javax.swing.JFrame {
         new BufferedReader(new InputStreamReader(process.getInputStream(), "CP850"));
             
             String line = "";           
-            
+            System.out.println("\r\n***Comando IPCONFIG:***");
             while ((line = reader.readLine())!= null) {                    
                 address = ip.getAdressIP(line);
                 gateway = ip.getGateway(line);
@@ -882,21 +884,12 @@ public class Tela extends javax.swing.JFrame {
                 mask = ip.getMask(line);                
                 
                 //MOSTRA AS INFORMAÇOES DO COMANDO MSDOS
-                //System.out.println(line);
-                netshToList.add(line);     
-                //TODO: trabalhar com arraylist
-            }            
+                System.out.println(line);
+                netshToList.add(line);                     
+            }
             
-//            tbIPAtual.setValueAt(address, 0, 1);
-//            tbIPAtual.setValueAt(mask, 1, 1);
-//            tbIPAtual.setValueAt(gateway, 2, 1);
-//            tbIPAtual.setValueAt(dns, 3, 1);
-            
-            fillTextBoxes(address, mask, gateway, dns);
-            
-            setAdapterName();
-            
-            //txtIP.setText(address.replace(".", ""));
+            fillTextBoxes(address, mask, gateway, dns);            
+            setAdapterName();            
         } 
         catch (Exception e) {
         }
@@ -985,6 +978,35 @@ public class Tela extends javax.swing.JFrame {
         txtIP14.setText(octet.get(1).toString());
         txtIP15.setText(octet.get(2).toString());
         txtIP16.setText(octet.get(3).toString());
+    }
+    
+    private String[] getTextBoxesContent(){
+        String[] addresses = new String[4];
+        addresses[0] = txtIP1.getText() + ".";
+        addresses[0] += txtIP2.getText() + ".";
+        addresses[0] += txtIP3.getText() + ".";
+        addresses[0] += txtIP4.getText();
+        addresses[0] = addresses[0].replace(" ", "");
+        
+        addresses[1] = txtIP5.getText() + ".";
+        addresses[1] += txtIP6.getText() + ".";
+        addresses[1] += txtIP7.getText() + ".";
+        addresses[1] += txtIP8.getText();
+        addresses[1] = addresses[1].replace(" ", "");
+        
+        addresses[2] = txtIP9.getText() + ".";
+        addresses[2] += txtIP10.getText() + ".";
+        addresses[2] += txtIP11.getText() + ".";
+        addresses[2] += txtIP12.getText();
+        addresses[2] = addresses[2].replace(" ", "");
+        
+        addresses[3] = txtIP13.getText() + ".";
+        addresses[3] += txtIP14.getText() + ".";
+        addresses[3] += txtIP15.getText() + ".";
+        addresses[3] += txtIP16.getText();
+        addresses[3] = addresses[3].replace(" ", "");        
+        
+        return addresses;
     }
 
     private void changeEditable() {
