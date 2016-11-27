@@ -49,6 +49,12 @@ public class IPAddress {
         return mask;
     }
     
+    public String checkValidIP(String address){
+        filter(address, "IPv4");
+        
+        return addressIP;
+    }
+    
     private void filter(String line, String field){
         String IPADDRESS_PATTERN = "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
 
