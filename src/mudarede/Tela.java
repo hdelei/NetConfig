@@ -197,11 +197,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP1.setColumns(3);
-        try {
-            txtIP1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -210,11 +206,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP2.setColumns(3);
-        try {
-            txtIP2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -223,12 +215,9 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP4.setColumns(3);
-        try {
-            txtIP4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtIP4.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtIP4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP4KeyReleased(evt);
@@ -236,11 +225,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP3.setColumns(3);
-        try {
-            txtIP3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -249,11 +234,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP5.setColumns(3);
-        try {
-            txtIP5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -262,11 +243,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP6.setColumns(3);
-        try {
-            txtIP6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP6.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -275,11 +252,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP7.setColumns(3);
-        try {
-            txtIP7.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP7.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP7.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -288,11 +261,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP8.setColumns(3);
-        try {
-            txtIP8.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP8.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP8.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -301,11 +270,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP9.setColumns(3);
-        try {
-            txtIP9.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP9.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP9.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP9.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -314,11 +279,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP10.setColumns(3);
-        try {
-            txtIP10.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP10.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP10.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP10.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -327,11 +288,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP11.setColumns(3);
-        try {
-            txtIP11.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP11.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP11.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP11.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -340,11 +297,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP12.setColumns(3);
-        try {
-            txtIP12.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP12.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP12.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP12.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -353,11 +306,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP13.setColumns(3);
-        try {
-            txtIP13.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP13.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP13.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP13.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -366,11 +315,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP14.setColumns(3);
-        try {
-            txtIP14.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP14.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP14.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP14.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -379,11 +324,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP15.setColumns(3);
-        try {
-            txtIP15.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP15.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP15.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP15.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -392,11 +333,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         txtIP16.setColumns(3);
-        try {
-            txtIP16.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtIP16.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP16.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIP16.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -655,83 +592,83 @@ public class Tela extends javax.swing.JFrame {
 
     private void txtIP1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP1KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP1);        
+        //changeFocus(txtIP1);        
     }//GEN-LAST:event_txtIP1KeyReleased
 
     private void txtIP2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP2KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP2);
+        //changeFocus(txtIP2);
     }//GEN-LAST:event_txtIP2KeyReleased
 
     private void txtIP4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP4KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP4);
+        //changeFocus(txtIP4);
     }//GEN-LAST:event_txtIP4KeyReleased
 
     private void txtIP3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP3KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP3);
+       // changeFocus(txtIP3);
         
     }//GEN-LAST:event_txtIP3KeyReleased
 
     private void txtIP5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP5KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP5);
+        //changeFocus(txtIP5);
     }//GEN-LAST:event_txtIP5KeyReleased
 
     private void txtIP6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP6KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP6);
+        //changeFocus(txtIP6);
     }//GEN-LAST:event_txtIP6KeyReleased
 
     private void txtIP7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP7KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP7);
+        //changeFocus(txtIP7);
     }//GEN-LAST:event_txtIP7KeyReleased
 
     private void txtIP8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP8KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP8);
+        //changeFocus(txtIP8);
     }//GEN-LAST:event_txtIP8KeyReleased
 
     private void txtIP9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP9KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP9);
+        //changeFocus(txtIP9);
     }//GEN-LAST:event_txtIP9KeyReleased
 
     private void txtIP10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP10KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP10);
+        //changeFocus(txtIP10);
     }//GEN-LAST:event_txtIP10KeyReleased
 
     private void txtIP11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP11KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP11);
+        //changeFocus(txtIP11);
     }//GEN-LAST:event_txtIP11KeyReleased
 
     private void txtIP12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP12KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP12);
+        //changeFocus(txtIP12);
     }//GEN-LAST:event_txtIP12KeyReleased
 
     private void txtIP13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP13KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP13);
+        //changeFocus(txtIP13);
     }//GEN-LAST:event_txtIP13KeyReleased
 
     private void txtIP14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP14KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP14);
+        //changeFocus(txtIP14);
     }//GEN-LAST:event_txtIP14KeyReleased
 
     private void txtIP15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP15KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP15);
+        //changeFocus(txtIP15);
     }//GEN-LAST:event_txtIP15KeyReleased
 
     private void txtIP16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIP16KeyReleased
         // TODO add your handling code here:
-        changeFocus(txtIP16);
+        //changeFocus(txtIP16);
     }//GEN-LAST:event_txtIP16KeyReleased
 
     private void btSaveIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveIPActionPerformed
@@ -745,8 +682,7 @@ public class Tela extends javax.swing.JFrame {
             timer.start();
         } catch (IOException ex) {
             Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }        
     }//GEN-LAST:event_btSaveIPActionPerformed
 
     /**
@@ -995,11 +931,11 @@ public class Tela extends javax.swing.JFrame {
     }
 
     private void changeFocus(JFormattedTextField txt) {
-        String count = txt.getText().trim();
-        if (count.length() == 3) { 
-           KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-           manager.focusNextComponent();           
-        }        
+        //String count = txt.getText().trim();
+//        if (txt.getText().length() == 3) { 
+//           KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+//           manager.focusNextComponent();           
+//        }        
     }
 
     private ArrayList<Integer> convertIP(String address) {
