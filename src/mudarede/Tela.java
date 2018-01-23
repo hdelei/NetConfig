@@ -129,7 +129,7 @@ public class Tela extends javax.swing.JFrame {
         btMudar.setText("Alterar");
         btMudar.setBorder(null);
         btMudar.setBorderPainted(false);
-        btMudar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btMudar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btMudar.setPreferredSize(new java.awt.Dimension(40, 15));
         btMudar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +139,6 @@ public class Tela extends javax.swing.JFrame {
 
         cbTipo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Configuração atual", "Config. Personalizada 1", "Config. Personalizada 2", "DHCP" }));
-        cbTipo.setBorder(null);
         cbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTipoActionPerformed(evt);
@@ -217,7 +216,7 @@ public class Tela extends javax.swing.JFrame {
         txtIP4.setColumns(3);
         txtIP4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtIP4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtIP4.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtIP4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtIP4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIP4KeyReleased(evt);
@@ -489,7 +488,7 @@ public class Tela extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btMudar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btMudar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(lblObter)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
